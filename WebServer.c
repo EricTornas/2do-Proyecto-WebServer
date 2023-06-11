@@ -16,8 +16,8 @@
 #include<stdbool.h>
 #include <dirent.h>
 
-#define MAXLINE 15000
-#define MAXBUF 15000
+#define MAXLINE 25000
+#define MAXBUF 25000
 #define LISTENQ 1024
 #define RIO_BUFSIZE 8192
 
@@ -204,7 +204,7 @@ int open_listenfd(int port)
         (const void *)&optval , sizeof(int)) < 0)
         return -1;
     
-    /* Listenfd will be an end point for all requests to port16on any IP address for this host */
+    /* Listenfd will be an end point for all requests  for this host */
     bzero((char *) &serveraddr, sizeof(serveraddr));
     serveraddr.sin_family = AF_INET;
     serveraddr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -219,7 +219,7 @@ int open_listenfd(int port)
 }
 
 void create_html_code(char * filename, char * output){
-    char * temp = (char *)calloc(sizeof(char), 15000);
+    char * temp = (char *)calloc(sizeof(char), 25000);
     struct stat sbuf;
     DIR * dirp = opendir(filename);
     if (dirp == NULL){
@@ -386,7 +386,7 @@ void serve_static(int fd, char *filename, int filesize, bool is_directory, struc
     int srcfd;
 
     char * filetype=(char *)calloc(sizeof(char), 1000);
-    char * buf=(char *)calloc(sizeof(char), 15000);
+    char * buf=(char *)calloc(sizeof(char), 25000);
     
     if(is_directory){ 
          
